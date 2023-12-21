@@ -1,0 +1,52 @@
+.lol-social-lower-pane-container {
+    transition: all .4s, transform 1s;
+}
+
+.friends-invis {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(50%);
+}
+
+.friends-button {
+    position: relative;
+    transition: all .3s;
+    color: rgb(205, 190, 145);
+    border: 1.5px solid rgb(205, 190, 145);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    background-color: rgb(32, 35, 40);
+    transition: color .3s;
+}
+
+.friends-button::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: overlay;
+    background-image: linear-gradient(to bottom, rgb(32, 35, 40), rgb(243, 229, 186));
+    opacity: 0;
+    transition: opacity .3s;
+    background-position: center bottom;
+    background-size: 100% 200%;
+}
+
+.friends-button :is(img, svg) {
+    width: 65%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.friends-button:hover {
+    color: rgb(255, 244, 213);
+}
+
+.friends-button:hover::after {
+    opacity: 1;
+}
