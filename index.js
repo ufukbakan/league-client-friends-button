@@ -9,6 +9,7 @@ import { domChange } from "./domListener";
 import "./theme.css";
 import groupIcon from "./assets/group.svg";
 let fetchingGroupIcon = false;
+let isFriendsOpen = true;
 
 export function init(context) {
     const rcp = context.rcp;
@@ -29,6 +30,7 @@ async function addToggleFriendsButton() {
             createFriendsButton().then(button => {
                 alphaPanel.replaceChild(button, alphaTag);
                 domChange.off(addToggleFriendsButton);
+                restoreStatus();
             })
         }
     }
@@ -53,8 +55,17 @@ function createFriendsButton() {
 }
 
 function toggleSocialPanel() {
+    isFriendsOpen = !isFriendsOpen;
+    restoreStatus();
+}
+
+function restoreStatus() {
     const lowerPanel = document.querySelector(".lol-social-lower-pane-container");
     if (lowerPanel) {
-        lowerPanel.classList.toggle("friends-invis")
+        if (isFriendsOpen) {
+            lowerPanel.classList.remove("friends-invis");
+        } else {
+            lowerPanel.classList.add("friends-invis");
+        }
     }
 }
